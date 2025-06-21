@@ -1,0 +1,42 @@
+python:
+CONCEPT:
+i)make k=k%len(nums)to avoid out of index error
+ii)reverse the array
+iii)reverse upto k-1
+iv)reverse from k to len(nums)-1
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        k=k%len(nums)
+        l,r = 0,len(nums)-1
+        while l<r:
+            nums[l],nums[r] = nums[r],nums[l]
+            l,r = l+1,r-1
+        l,r=0,k-1
+        while l<r:
+            nums[l],nums[r] = nums[r],nums[l]
+            l,r = l+1,r-1
+        l,r=k,len(nums)-1
+        while l<r:
+            nums[l],nums[r] = nums[r],nums[l]
+            l,r = l+1,r-1
+
+
+
+C:In c we cant directly swap..we have to use temp variable.
+void reverse(int* nums, int start, int end) {
+    while (start < end) {
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+void rotate(int* nums, int numsSize, int k) {
+    k = k % numsSize;
+    if (k == 0) return;
+    reverse(nums, 0, numsSize - 1);
+    reverse(nums, 0, k - 1);
+    reverse(nums, k, numsSize - 1);
+}
