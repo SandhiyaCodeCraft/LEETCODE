@@ -1,0 +1,28 @@
+Java:
+import java.util.*;
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        Map<Integer, Integer> countMap = new HashMap<>();
+        List<Integer> l = new ArrayList<>();
+        Set<Integer> s = new HashSet<>();
+        for (int num : nums) {
+            countMap.put(num, countMap.getOrDefault(num, 0) + 1);
+            if (countMap.get(num) > nums.length / 3 && !s.contains(num)) {
+                l.add(num);
+                s.add(num);
+            }
+        }
+        return l;
+    }
+Python:
+from collections import Counter
+class Solution:
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        l = Counter(nums)
+        res=[]
+        s=set()
+        for i in l:
+            if l[i] > len(nums)/3 and i not in s:
+                res.append(i)
+                s.add(i)
+        return res
