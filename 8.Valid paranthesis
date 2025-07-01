@@ -1,0 +1,50 @@
+python:
+class Solution:
+    def isValid(self, s: str) -> bool:
+        if len(s) % 2 != 0:
+            return False
+
+        stack = []
+
+        for c in s:
+            if c == '(' or c == '[' or c == '{':
+                stack.append(c)
+            elif c == ')' and stack and stack[-1] == '(':
+                stack.pop()
+            elif c == ']' and stack and stack[-1] == '[':
+                stack.pop()
+            elif c == '}' and stack and stack[-1] == '{':
+                stack.pop()
+            else:
+                return False
+
+        return len(stack) == 0
+
+Java:
+import java.util.*;
+class Solution {
+    public boolean isValid(String s) {
+        if(s.length()%2!=0){
+            return false;
+        }
+        Stack<Character> S = new Stack<>();
+        for(char c:s.toCharArray()){
+            if(c=='(' || c=='[' || c=='{'){
+                S.push(c);
+            }
+            else if(c==')' && !S.isEmpty() && S.peek()=='('){
+                S.pop();
+            }
+             else if(c=='}' && !S.isEmpty() && S.peek()=='{'){
+                S.pop();
+            }
+             else if(c==']' && !S.isEmpty() && S.peek()=='['){
+                S.pop();
+            }
+            else{
+                return false;
+            }
+        }
+        return S.isEmpty();  
+    }
+}
