@@ -1,0 +1,33 @@
+python:
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+        def merge(arr,L,M,R):
+            i,j,k = L,0,0
+            leftarr,rightarr = arr[L:M+1],arr[M+1:R+1]
+            while j<len(leftarr) and k<len(rightarr):
+                if leftarr[j]<rightarr[k]:
+                    arr[i]=leftarr[j]
+                    j+=1
+                else:
+                    arr[i]=rightarr[k]
+                    k+=1
+                i+=1
+            while j<len(leftarr):
+                arr[i]=leftarr[j]
+                j+=1
+                i+=1
+            while k<len(rightarr):
+                arr[i]=rightarr[k]
+                k+=1
+                i+=1
+        def mergesort(arr,l,r):
+            if l==r:
+                return arr
+            m=(l+r)//2
+            mergesort(arr,l,m)
+            mergesort(arr,m+1,r)
+            merge(arr,l,m,r)
+            return arr
+        
+        res = mergesort(nums,0,len(nums)-1)
+        return res
