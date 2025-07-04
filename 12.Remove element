@@ -1,0 +1,28 @@
+java:
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        if(nums.length == 0){
+            return 0;
+        }
+        int i=0;
+        for(int j=0;j<nums.length;j++){
+            if(nums[j]!=val){
+                nums[i]=nums[j];
+                i++;
+            }
+        }
+        return i;//here we return i beacuse in two pointers i points the next index priorly before inserted,if two elements are only valid and are inserted and it increments the index value before the next element is checked.so that is the answer
+        
+    }
+}
+python:
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        if len(nums)==0:
+            return 0
+        i=0
+        for j in range(len(nums)):
+            if nums[j]!=val:
+                nums[i]=nums[j]
+                i+=1
+        return i
