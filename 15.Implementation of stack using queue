@@ -1,0 +1,52 @@
+python:
+from collections import deque
+class MyStack:
+
+    def __init__(self):
+        self.q1 = deque()
+        self.q2 = deque()
+    def push(self, x: int) -> None:
+        self.q2.append(x)
+        while self.q1:
+            self.q2.append(self.q1.popleft())
+        self.q1,self.q2 = self.q2,self.q1
+    def pop(self) -> int:
+        return self.q1.popleft()
+
+    def top(self) -> int:
+        return self.q1[0]
+
+    def empty(self) -> bool:
+        return not self.q1
+
+java:
+class MyStack {
+    Queue<Integer> q1;
+    Queue<Integer> q2;
+    public MyStack() {
+        q1 = new LinkedList<>();
+        q2 = new LinkedList<>();
+    }
+    
+    public void push(int x) {
+        q2.offer(x);
+        while(!q1.isEmpty()){
+            q2.offer(q1.poll());
+        }
+        Queue<Integer> temp = new LinkedList<>();
+        temp = q1;
+        q1=q2;
+        q2=temp;
+    }
+    public int pop() {
+        return q1.poll();
+    }
+    
+    public int top() {
+        return q1.peek();
+    }
+    
+    public boolean empty() {
+        return q1.isEmpty();   
+    }
+}
