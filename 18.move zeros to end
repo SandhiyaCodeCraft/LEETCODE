@@ -1,0 +1,10 @@
+arr=[-4,-1,0,0,10,0,5]
+j=0
+for i in arr:
+    if i!=0:
+        arr[j]=i
+        j+=1
+while j<len(arr):
+    arr[j]=0
+    j+=1
+print(arr).....................optimised
